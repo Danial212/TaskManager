@@ -6,6 +6,7 @@ from django.conf import settings
 
 class Category(models.Model):
     title = models.CharField(max_length=64);
+    color = models.CharField(max_length=8, default="#000000")#  The color of the task in Hex format
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
@@ -31,5 +32,4 @@ class Task(models.Model):
     has_reminder =  models.BooleanField(default=False)
     reminder =      models.DateTimeField()
     status =        models.CharField(max_length=2, choices=TASK_STATUS)
-    color =         models.CharField(max_length=8, default="#000000")#  The color of the task in Hex format
     proirity =      models.CharField(max_length=2, choices=PRIORITY)

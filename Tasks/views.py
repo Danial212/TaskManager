@@ -23,7 +23,7 @@ class CategoryViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
     
     def get_serializer_context(self):
-        return {'request': self.request}
+        return {'request': self.request, 'user': self.request.user}
 
     def get_queryset(self):
         return Category.objects.prefetch_related('tasks').filter(user=self.request.user)
